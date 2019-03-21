@@ -1,0 +1,16 @@
+filter:
+  include_entities:
+    - light.hue_lightstrip_plus_1
+    - light.luci_studio_fotografico
+    - light.osram_led_esterno
+    - light.osram_switch
+    - light.ingresso
+    - light.vetrinetta
+    - light.cassa
+    - light.fototessere
+    - light.postazione
+    - light.assistenza
+    - binary_sensor.door_window_sensor_158d00014d5609
+    - binary_sensor.door_window_sensor_158d0001871594
+    - binary_sensor.motion_sensor_158d00015b4de0
+    - binary_sensor.motion_sensor_158d00015e6c34

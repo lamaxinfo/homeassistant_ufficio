@@ -1,0 +1,223 @@
+#Interruttore UFFICIO
+- alias: Interruttore Ufficio Sinistra
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d0001f48063
+      click_type: single
+  action:
+    service: light.toggle
+    data:
+      entity_id: light.postazione
+
+- alias: Interruttore Ufficio Destra
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d0001f48063
+      click_type: single
+  action:
+    service: light.toggle
+    data:
+      entity_id: light.assistenza
+
+- alias: Interruttore Ufficio Insieme
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d0001f48063
+      click_type: both
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.osram_led_esterno
+
+
+#interruttore STUDIO FOTOGRAFICO
+- alias: Interruttore Studio Sinistra
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d0001f48076
+      click_type: single
+  action:
+    service: light.toggle
+    data:
+      entity_id: light.luci_studio_fotografico
+
+- alias: Interruttore Studio Destra
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d0001f48076
+      click_type: single
+  action:
+    service: light.turn_off
+    data:
+      entity_id: group.negozio
+
+
+#interruttore NEGOZIO
+- alias: Interruttore Negozio Sinistra
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d0001f47f59
+      click_type: single
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.ingresso
+  - service: light.toggle
+    data:
+      entity_id: light.vetrinetta
+
+- alias: Interruttore Negozio Destra
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d0001f47f59
+      click_type: single
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.fototessere
+  - service: light.toggle
+    data:
+      entity_id: light.cassa
+
+
+- alias: Interruttore Negozio Insieme
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d0001f47f59
+      click_type: both
+  action:
+    service: light.turn_off
+    data:
+      entity_id: group.all_lights
+
+#volume musica
+- alias: Setta Volume
+  trigger:
+    platform: state
+    entity_id: input_number.volume_musica
+  action:
+    service: shell_command.setta_volume
+  id: f0ac1e9d96ea4cb3b1cbd0ad0d06d8aa
+
+#CAMPANELLO
+- alias: Campanello Apriporta
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001871594
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: binary_sensor.motion_sensor_158d00015b4de0
+    state: 'off'
+  action:
+    service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: 286C0788ACC8
+      ringtone_id: 10
+      ringtone_vol: 50
+
+#notifica Porta Ufficio
+- alias: Notifica Porta Ufficio
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00014d5609
+    from: 'off'
+    to: 'on'
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.destra
+      filename: snapshot/destra_{{ now().strftime("%Y%m%d-%H%M") }}.jpg
+  - service: notify.telegram
+    data:
+      title: Allarme Ingresso non autorizzato
+      message: "Porta Ufficio Aperta!"
+      data:
+        photo:
+          - file: snapshot/destra_{{ now().strftime("%Y%m%d-%H%M") }}.jpg
+            caption: Porta Ufficio Aperta!
+
+#Notifica Porta Negozio se non in negozio
+- alias: Notifica Porta Negozio
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001871594
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id:  device_tracker.applewaimiliano
+    state: not_home
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.destra
+      filename: snapshot/destra_{{ now().strftime("%Y%m%d-%H%M") }}.jpg
+  - service: notify.telegram
+    data:
+      title: Allarme Ingresso non autorizzato
+      message: "Porta Negozio Aperta!"
+      data:
+        photo:
+          - file: snapshot/destra_{{ now().strftime("%Y%m%d-%H%M") }}.jpg
+            caption: Porta Negozio Aperta!
+
+
+- id: '1543229753622'
+  alias: Luci di Natale
+  trigger:
+  - at: '16:30'
+    platform: time
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.osram_switch
+
+- alias: Notifica Mancanza corrente
+  trigger:
+    platform: state
+    entity_id: sensor.ups_status
+    to: "ONBATT"
+  action:
+    service: notify.telegram
+    data:
+      message: 'Manca la corrente in Ufficio'
+
+- alias: Notifica Serranda
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.movement
+    event_data:
+      entity_id:  binary_sensor.vibration_158d0002a4925c
+      movement_type: vibrate
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.sinistra
+      filename: snapshot/sinistra_{{ now().strftime("%Y%m%d-%H%M") }}.jpg
+  - service: notify.telegram
+    data:
+      title: Serranda in movimento
+      message: "Serranda in movimento!"
+      data:
+        photo:
+          - file: snapshot/sinistra_{{ now().strftime("%Y%m%d-%H%M") }}.jpg
+            caption: La serranda si muove!

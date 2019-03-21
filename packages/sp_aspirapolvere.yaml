@@ -1,0 +1,34 @@
+#Smart Plug Houzetek che controlla l'alimentazione dell'aspirapolvere
+homeassistant:
+sensor:
+  - platform: mqtt
+    name: "Totale energia consumata Aspirapolvere"
+    state_topic: "tele/tuya1/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Consumo Istantaneo Aspirapolvere"
+    state_topic: "tele/tuya1/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Tensione Aspirapolvere"
+    state_topic: "tele/tuya1/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  - platform: mqtt
+    name: "Corrente Istantanea Aspirapolvere"
+    state_topic: "tele/tuya1/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+
+switch:
+  - platform: mqtt
+    name: "Presa Smart"
+    state_topic: "tele/tuya1/STATE"
+    value_template: "{{ value_json.POWER }}"
+    command_topic: "cmnd/tuya1/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: false

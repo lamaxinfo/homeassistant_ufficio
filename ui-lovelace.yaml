@@ -1,0 +1,134 @@
+title: Via Pasquale Circelli
+views:
+  - title: default_view
+    icon: mdi:office
+    badges:
+      - device_tracker.applewaimiliano
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: entity-button
+            name: Arcade
+            entity: switch.cabinato_arcade
+            icon: mdi:gamepad
+            tap_action:
+              action: toggle
+          - type: entity-button
+            name: Aspirapolvere
+            entity: switch.presa_smart
+            icon: mdi:robot-vacuum-variant
+            tap_action:
+              action: toggle
+      - type: vertical-stack
+        cards:
+          - type: picture-entity
+            entity: camera.destra
+          - type: picture-entity
+            entity: camera.sinistra
+      - type: glance
+        title: Negozio
+        show_state: false
+        columns: 4
+    #    show_header_toggle: False
+        entities:
+        #  - type: section
+        #  - type: divider
+          - entity: light.cassa
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: light.fototessere
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: light.vetrinetta
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: light.ingresso
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+        #  - type: divider
+          - binary_sensor.door_window_sensor_158d0001871594
+          - binary_sensor.motion_sensor_158d00015b4de0
+          - entity: light.hue_lightstrip_plus_1
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: light.osram_led_esterno
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+  #luci di natale
+  #        - entity: light.osram_switch
+  #          tap_action:
+  #            action: toggle
+  #          hold_action:
+  #            action: more-info
+      - type: sensor
+        entity: sensor.illumination_286c0788acc8
+        name: Luminosità Ufficio
+        graph: line
+      - type: entities
+        title: Ufficio
+        show_header_toggle: False
+        entities:
+          - binary_sensor.door_window_sensor_158d00014d5609
+          - binary_sensor.motion_sensor_158d00015e6c34
+          - type: divider
+          - light.postazione
+          - light.assistenza
+      - type: entities
+        title: Studio Fotografico
+        show_header_toggle: False
+        entities:
+          - light.luci_studio_fotografico
+      - type: entities
+        title: Corrente ed Internet
+        show_header_toggle: False
+        entities:
+          - sensor.ups_input_voltage
+          - sensor.ups_battery
+          - sensor.ups_load
+          - sensor.ups_status
+          - sensor.ups_time_left
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
+      - type: weather-forecast
+        entity: weather.dark_sky
+      - type: conditional
+        conditions:
+          - entity: switch.presa_smart
+            state: "on"
+        card:
+          type: vertical-stack
+          cards:
+            - type: gauge
+              name: Voltaggio
+              unit: 'V'
+              entity: sensor.tensione_aspirapolvere
+              min: 200
+              max: 260
+              severity:
+                green: 240
+                yellow: 245
+                red: 250
+            - type: horizontal-stack
+              cards:
+                - type: gauge
+                  name: Power
+                  unit: 'W'
+                  entity: sensor.consumo_istantaneo_aspirapolvere
+                  min: 0
+                  max: 50
+                - type: gauge
+                  name: Consumo
+                  unit: 'KW/h'
+                  entity: sensor.totale_energia_consumata_aspirapolvere

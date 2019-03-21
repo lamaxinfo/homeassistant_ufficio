@@ -1,0 +1,39 @@
+device_tracker.iphone_di_massimiliano:
+  entity_picture: /local/max.jpg
+  friendly_name: Max
+
+sensor.previsioni_del_tempo_summary:
+  friendly_name: Riassunto giornata
+
+sensor.previsioni_del_tempo_daily_summary:
+  friendly_name: Riassunto settimana
+
+sensor.previsioni_del_tempo_temperature:
+  friendly_name: Temperatura attuale
+
+sensor.previsioni_del_tempo_daily_low_temperature:
+  friendly_name: Minima
+
+sensor.previsioni_del_tempo_daily_high_temperature:
+  friendly_name: Massima
+
+light.yeelight_ceiling_34ce0086b53b:
+  friendly_name: Ingresso
+
+light.yeelight_ceiling_34ce008c3307:
+  friendly_name: Cassa
+
+light.yeelight_ceiling_34ce008c3847:
+  friendly_name: Fototessere
+
+light.yeelight_ceiling_34ce008c531d:
+  friendly_name: Assistenza
+
+light.yeelight_ceiling_7811dc6d1621:
+  friendly_name: Vetrina
+
+light.yeelight_ceiling_34ce0086764c:
+  friendly_name: Postazione
+
+binary_sensor.vibration_158d0002a4925c:
+  friendly_name: Sensore Serranda

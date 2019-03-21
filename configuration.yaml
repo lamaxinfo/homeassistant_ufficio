@@ -1,0 +1,251 @@
+homeassistant:
+  name: LaMax di Massimiliano Latella
+  latitude: !secret latitude_negozio
+  longitude: !secret longitude_negozio
+  elevation: 600
+  unit_system: metric
+  time_zone: Europe/Rome
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+  whitelist_external_dirs:
+  - /config/snapshot
+#include
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+shell_command: !include shell_command.yaml
+homekit: !include homekit.yaml
+
+system_health:
+  
+lovelace:
+  mode: yaml
+
+discovery:
+  enable:
+    - homekit
+
+# Enables the frontend
+frontend:
+
+config:
+
+http:
+  base_url: !secret ip_hass
+
+updater:
+
+history:
+
+logbook:
+
+map:
+
+zone:
+  - name: Negozio
+    latitude: !secret latitude_negozio
+    longitude: !secret longitude_negozio
+    icon: mdi:worker
+  - name: Home
+    latitude: !secret latitude_casa
+    longitude: !secret longitude_casa
+    icon: mdi:home
+  - name: San Marco
+    latitude: !secret latitude_smarco
+    longitude: !secret longitude_smarco
+    icon: mdi:worker
+
+sun:
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret api_telegram
+    allowed_chat_ids:
+      - !secret chat_id
+
+#mqtt
+#mqtt:
+#  password: hello
+#  discovery: true
+
+notify:
+  - name: Telegram
+    platform: telegram
+    chat_id: !secret chat_id
+
+media_player:
+  - platform: cast
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+
+apcupsd:
+  host: 192.168.3.199
+
+
+hue:
+  bridges:
+    - host: !secret hue_ip
+      allow_unreachable: false
+      allow_hue_groups: false
+
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+sensor:
+  - platform: yr
+  - platform: systemmonitor
+    resources:
+      - type: memory_free
+      - type: load_15m
+      - type: load_5m
+      - type: load_1m
+      - type: processor_use
+      - type: last_boot
+
+  - platform: rest
+    name: audiocast
+    resource: http://192.168.3.221/httpapi.asp?command=getPlayerStatus
+
+  - platform: apcupsd
+    resources:
+      - bcharge
+      - linev
+      - loadpct
+      - timeleft
+      - status
+
+#FFMpeg
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+#Telecamere
+camera:
+  - platform: generic
+    still_image_url: !secret camera_left_ip
+    name: Sinistra
+  - platform: generic
+    still_image_url: !secret camera_right_ip
+    name: Destra
+#  - platform: ffmpeg
+#    name: negozio
+#    input: -rtsp_transport tcp -i rtsp://192.168.3.203:8554/unicast
+
+
+#Luci
+light:
+  - platform: yeelight
+    devices:
+      192.168.3.230:
+        name: Cassa
+        model: ceiling1
+      192.168.3.231:
+        name: Postazione
+        model: ceiling1
+      192.168.3.232:
+        name: Assistenza
+        model: ceiling1
+      192.168.3.233:
+        name: Ingresso
+        model: ceiling1
+      192.168.3.234:
+        name: Fototessere
+        model: ceiling1
+      192.168.3.235:
+        name: Vetrinetta
+        model: ceiling1
+      192.168.3.236:
+        name: Bagno
+
+#Sonoff Studio
+  - platform: mqtt
+    name: "Luci Studio Fotografico"
+    state_topic: "/Sonoff_2/rele/state"
+    command_topic: "/Sonoff_2/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 1
+    retain: true
+
+#Xiaomi Gateway
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_key
+
+
+switch:
+  #Audiocast
+  - platform: command_line
+    switches:
+      radiodeejay:
+        command_on: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:play:http://radiodeejay-lh.akamaihd.net/i/RadioDeejay_Live_1@189857/master.m3u8
+        command_off: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:stop
+      mute:
+        command_on: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:mute:1
+        command_off: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:mute:0
+
+  - platform: mqtt
+    name: "Serranda su"
+    state_topic: "/quadroelettrico/rele1/state"
+    command_topic: "/quadroelettrico/gpio/0"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 1
+    retain: true
+  - platform: mqtt
+    name: "Serranda giu"
+    state_topic: "/quadroelettrico/rele2/state"
+    command_topic: "/quadroelettrico/gpio/12"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 1
+    retain: true
+
+  - platform: wake_on_lan
+    mac_address: "1c:1b:0d:62:da:c5"
+    name: "Riavvia Hackintosh"
+    host: "192.168.3.2"
+    turn_off:
+      service: shell_command.reboot_max
+
+  - platform: wake_on_lan
+    mac_address: "1c:1b:0d:62:da:c5"
+    name: "Spegni Hackintosh"
+    host: "192.168.3.2"
+    turn_off:
+      service: shell_command.shutdown_max
+
+  - platform: command_line
+    switches:
+      test_ssh:
+        command_on: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa lamax@192.168.3.2 sudo poweroff"
+        friendly_name: Magic Test Switch
+
+
+#AudioCast
+
+input_number:
+  volume_musica:
+    name: Volume
+    icon: mdi:volume-high
+    min: 1
+    max: 100
+    step: 1
+    initial: 50
+
+device_tracker:
+  - platform: mikrotik
+    host: 192.168.3.1
+    username: !secret routeruser
+    password: !secret routerpw
+    method: ip
+    interval_seconds: 10
+    consider_home: 180
+    track_new_devices: false
