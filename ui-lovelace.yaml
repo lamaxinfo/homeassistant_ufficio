@@ -132,3 +132,32 @@ views:
                   name: Consumo
                   unit: 'KW/h'
                   entity: sensor.totale_energia_consumata_aspirapolvere
+      - type: conditional
+        conditions:
+          - entity: switch.cabinato_arcade
+            state: "on"
+        card:
+          type: vertical-stack
+          cards:
+            - type: gauge
+              name: Voltaggio
+              unit: 'V'
+              entity: sensor.tensione_cabinato_arcade
+              min: 200
+              max: 260
+              severity:
+                green: 240
+                yellow: 245
+                red: 250
+            - type: horizontal-stack
+              cards:
+                - type: gauge
+                  name: Power
+                  unit: 'W'
+                  entity: sensor.consumo_istantaneo_cabinato_arcade
+                  min: 0
+                  max: 50
+                - type: gauge
+                  name: Consumo
+                  unit: 'KW/h'
+                  entity: sensor.totale_energia_consumata_cabinato_arcade

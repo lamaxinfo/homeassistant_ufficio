@@ -17,7 +17,7 @@ shell_command: !include shell_command.yaml
 homekit: !include homekit.yaml
 
 system_health:
-  
+
 lovelace:
   mode: yaml
 
@@ -63,10 +63,6 @@ telegram_bot:
     allowed_chat_ids:
       - !secret chat_id
 
-#mqtt
-#mqtt:
-#  password: hello
-#  discovery: true
 
 notify:
   - name: Telegram
@@ -133,9 +129,6 @@ camera:
   - platform: generic
     still_image_url: !secret camera_right_ip
     name: Destra
-#  - platform: ffmpeg
-#    name: negozio
-#    input: -rtsp_transport tcp -i rtsp://192.168.3.203:8554/unicast
 
 
 #Luci
@@ -207,6 +200,7 @@ switch:
     payload_off: "1"
     qos: 1
     retain: true
+#test per spegnere il mac da Home Assistant
 
   - platform: wake_on_lan
     mac_address: "1c:1b:0d:62:da:c5"
