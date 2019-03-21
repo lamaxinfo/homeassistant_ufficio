@@ -2,4 +2,4 @@
 La mia configurazione Home Assistant per l'ufficio
 
 ## Principale
-![SchedaHome](https://github.com/daxda/HomeAssistante/raw/master/screenshot/page_1.png)
+![SchedaHome](https://github.com/lamaxinfo/homeassistant_ufficio/master/screenshot/schermata_principale.png)
