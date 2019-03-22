@@ -4,6 +4,9 @@ La mia configurazione Home Assistant per l'ufficio
 ## Principale
 ![SchedaHome](https://github.com/lamaxinfo/homeassistant_ufficio/blob/master/screenshot/schermata_principale.png)
 
+## Consumi
+![SchedaHome](https://github.com/lamaxinfo/homeassistant_ufficio/blob/master/screenshot/schermata_consumi.png)
+
 Non ho tantissime cose qui in ufficio, ma ho azzardato la creazione dell'impianto illuminotecnico utilizzando lampadari smart [Yeelight Ceiling](https://sagg.it/2Ofj5Nk) senza prevedere interruttori fisici per il comando, tenendoli quindi sempre in tensione.
 
 Per comandare le luci uso i pulsanti doppi [Aqara Wi-Fi](https://sagg.it/2Ofja3A) che hanno il click singolo oppure il click insieme (destra e sinistra). 
