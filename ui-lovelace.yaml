@@ -19,6 +19,28 @@ views:
             icon: mdi:robot-vacuum-variant
             tap_action:
               action: toggle
+      - type: horizontal-stack
+        cards:
+          - type: entity-button
+            name: Presa 3
+            entity: switch.tuya_3
+            icon: mdi:power-socket-eu
+            tap_action:
+              action: toggle
+          - type: entity-button
+            name: Presa 4
+            entity: switch.tuya_4
+            icon: mdi:mdi:power-socket-eu
+            tap_action:
+              action: toggle
+      - type: horizontal-stack
+        cards:
+          - type: entity-button
+            name: Presa 5
+            entity: switch.tuya_5
+            icon: mdi:mdi:power-socket-eu
+            tap_action:
+              action: toggle
       - type: vertical-stack
         cards:
           - type: picture-entity
@@ -161,3 +183,134 @@ views:
                   name: Consumo
                   unit: 'KW/h'
                   entity: sensor.totale_energia_consumata_cabinato_arcade
+
+#Pagina dei consumi
+
+  - title: Consumi
+    icon: mdi:power
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
+              ## Arcade
+          - type: gauge
+            name: Voltaggio
+            unit: 'KW/h'
+            entity: sensor.totale_energia_consumata_cabinato_arcade
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                name: Power
+                unit: 'W'
+                entity: sensor.consumo_istantaneo_cabinato_arcade
+                min: 0
+                max: 2200
+                severity:
+                  green: 0
+                  yellow: 1000
+                  red: 1800
+              - type: gauge
+                name: Consumo
+                unit: 'V'
+                entity: sensor.tensione_cabinato_arcade
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
+              ## Aspirapolvere
+          - type: gauge
+            name: Voltaggio
+            unit: 'KW/h'
+            entity: sensor.totale_energia_consumata_aspirapolvere
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                name: Power
+                unit: 'W'
+                entity: sensor.consumo_istantaneo_aspirapolvere
+                min: 0
+                max: 2200
+                severity:
+                  green: 0
+                  yellow: 1000
+                  red: 1800
+              - type: gauge
+                name: Consumo
+                unit: 'V'
+                entity: sensor.tensione_aspirapolvere
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
+              ## Presa 3
+          - type: gauge
+            name: Voltaggio
+            unit: 'KW/h'
+            entity: sensor.totale_energia_consumata_tuya3
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                name: Power
+                unit: 'W'
+                entity: sensor.consumo_istantaneo_tuya3
+                min: 0
+                max: 2200
+                severity:
+                  green: 0
+                  yellow: 1000
+                  red: 1800
+              - type: gauge
+                name: Consumo
+                unit: 'V'
+                entity: sensor.tensione_tuya3
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
+              ## Presa 4
+          - type: gauge
+            name: Voltaggio
+            unit: 'KW/h'
+            entity: sensor.totale_energia_consumata_tuya4
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                name: Power
+                unit: 'W'
+                entity: sensor.consumo_istantaneo_tuya4
+                min: 0
+                max: 2200
+                severity:
+                  green: 0
+                  yellow: 1000
+                  red: 1800
+              - type: gauge
+                name: Consumo
+                unit: 'V'
+                entity: sensor.tensione_tuya4
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
+              ## Presa 5
+          - type: gauge
+            name: Voltaggio
+            unit: 'KW/h'
+            entity: sensor.totale_energia_consumata_tuya5
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                name: Power
+                unit: 'W'
+                entity: sensor.consumo_istantaneo_tuya5
+                min: 0
+                max: 2200
+                severity:
+                  green: 0
+                  yellow: 1000
+                  red: 1800
+              - type: gauge
+                name: Consumo
+                unit: 'V'
+                entity: sensor.tensione_tuya5

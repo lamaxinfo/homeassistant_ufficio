@@ -25,10 +25,13 @@ sensor:
 switch:
   - platform: mqtt
     name: "Cabinato Arcade"
-    state_topic: "tele/vg/STATE"
+    state_topic: "stat/vg/RESULT"
     value_template: "{{ value_json.POWER }}"
     command_topic: "cmnd/vg/POWER"
+    availability_topic: "tele/vg/LWT"
     qos: 1
     payload_on: "ON"
     payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
     retain: false

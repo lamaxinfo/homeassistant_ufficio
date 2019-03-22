@@ -57,6 +57,8 @@ zone:
 
 sun:
 
+wake_on_lan:
+
 telegram_bot:
   - platform: polling
     api_key: !secret api_telegram
@@ -222,6 +224,8 @@ switch:
         command_on: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa lamax@192.168.3.2 sudo poweroff"
         friendly_name: Magic Test Switch
 
+  - platform: wake_on_lan
+    mac_address: "98:de:d0:1d:d3:8b"
 
 #AudioCast
 
