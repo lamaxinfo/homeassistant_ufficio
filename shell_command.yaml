@@ -1,3 +1,2 @@
-reboot_max: ssh -l lamax 192.168.3.2 sudo reboot
-setta_volume: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:vol:{{ states.input_number.volume_musica.state }}
+reboot_max: 'ssh lamax@192.168.3.2 sudo reboot'
 shutdown_max: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa lamax@192.168.3.2 sudo poweroff'

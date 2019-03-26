@@ -1,7 +1,12 @@
 title: Via Pasquale Circelli
+resources:
+  - url: /local/custom-lovelace/weather-card/weather-card.js
+    type: module
+  - url: /local/custom-lovelace/mini-media-player-bundle.js
+    type: module
 views:
   - title: default_view
-    icon: mdi:office
+    icon: mdi:home-modern
     badges:
       - device_tracker.applewaimiliano
     cards:
@@ -22,9 +27,9 @@ views:
       - type: horizontal-stack
         cards:
           - type: entity-button
-            name: Presa 3
+            name: Stufa
             entity: switch.tuya_3
-            icon: mdi:power-socket-eu
+            icon: mdi:fire
             tap_action:
               action: toggle
           - type: entity-button
@@ -36,9 +41,9 @@ views:
       - type: horizontal-stack
         cards:
           - type: entity-button
-            name: Presa 5
+            name: Tenda Luminosa
             entity: switch.tuya_5
-            icon: mdi:mdi:power-socket-eu
+            icon: mdi:led-outline
             tap_action:
               action: toggle
       - type: vertical-stack
@@ -123,7 +128,7 @@ views:
           - sensor.ups_time_left
           - sensor.speedtest_download
           - sensor.speedtest_upload
-      - type: weather-forecast
+      - type: custom:weather-card
         entity: weather.dark_sky
       - type: conditional
         conditions:
@@ -183,7 +188,26 @@ views:
                   name: Consumo
                   unit: 'KW/h'
                   entity: sensor.totale_energia_consumata_cabinato_arcade
-
+      - type: custom:mini-media-player
+        entity: media_player.speaker
+        artwork: cover
+        artwork_border: true
+        power: false
+        group: true
+        source: true
+        progress: true
+        shortcuts:
+          columns: 3
+          buttons:
+            - name: DeeJay
+              type: music
+              id: http://radiodeejay-lh.akamaihd.net/i/RadioDeejay_Live_1@189857/master.m3u8
+            - name: Capital
+              type: music
+              id: http://radiocapital-lh.akamaihd.net/i/RadioCapital_Live_1@196312/master.m3u8
+            - name: m2o
+              type: music
+              id: http://radiom2o-lh.akamaihd.net/i/RadioM2o_Live_1@42518/master.m3u8
 #Pagina dei consumi
 
   - title: Consumi
@@ -195,7 +219,7 @@ views:
             content: >
               ## Arcade
           - type: gauge
-            name: Voltaggio
+            name: Consumo Totale
             unit: 'KW/h'
             entity: sensor.totale_energia_consumata_cabinato_arcade
           - type: horizontal-stack
@@ -211,7 +235,7 @@ views:
                   yellow: 1000
                   red: 1800
               - type: gauge
-                name: Consumo
+                name: Voltaggio
                 unit: 'V'
                 entity: sensor.tensione_cabinato_arcade
       - type: vertical-stack
@@ -220,7 +244,7 @@ views:
             content: >
               ## Aspirapolvere
           - type: gauge
-            name: Voltaggio
+            name: Consumo Totale
             unit: 'KW/h'
             entity: sensor.totale_energia_consumata_aspirapolvere
           - type: horizontal-stack
@@ -236,16 +260,16 @@ views:
                   yellow: 1000
                   red: 1800
               - type: gauge
-                name: Consumo
+                name: Voltaggio
                 unit: 'V'
                 entity: sensor.tensione_aspirapolvere
       - type: vertical-stack
         cards:
           - type: markdown
             content: >
-              ## Presa 3
+              ## Stufa
           - type: gauge
-            name: Voltaggio
+            name: Consumo Totale
             unit: 'KW/h'
             entity: sensor.totale_energia_consumata_tuya3
           - type: horizontal-stack
@@ -261,7 +285,7 @@ views:
                   yellow: 1000
                   red: 1800
               - type: gauge
-                name: Consumo
+                name: Voltaggio
                 unit: 'V'
                 entity: sensor.tensione_tuya3
       - type: vertical-stack
@@ -270,7 +294,7 @@ views:
             content: >
               ## Presa 4
           - type: gauge
-            name: Voltaggio
+            name: Consumo Totale
             unit: 'KW/h'
             entity: sensor.totale_energia_consumata_tuya4
           - type: horizontal-stack
@@ -286,16 +310,16 @@ views:
                   yellow: 1000
                   red: 1800
               - type: gauge
-                name: Consumo
+                name: Voltaggio
                 unit: 'V'
                 entity: sensor.tensione_tuya4
       - type: vertical-stack
         cards:
           - type: markdown
             content: >
-              ## Presa 5
+              ## Tenda Luminosa
           - type: gauge
-            name: Voltaggio
+            name: Consumo Totale
             unit: 'KW/h'
             entity: sensor.totale_energia_consumata_tuya5
           - type: horizontal-stack
@@ -311,6 +335,20 @@ views:
                   yellow: 1000
                   red: 1800
               - type: gauge
-                name: Consumo
+                name: Voltaggio
                 unit: 'V'
                 entity: sensor.tensione_tuya5
+
+# Pagina Arcade
+
+#  - title: Consumi
+#    icon: mdi:gamepad
+#    cards:
+#      - type: conditional
+#        conditions:
+#          - entity: switch.cabinato_arcade
+#            state: "on"
+#        card:
+#          type: iframe
+#          url: http://192.168.3.17
+#          aspect_ratio: 100%

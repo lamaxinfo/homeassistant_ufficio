@@ -17,30 +17,21 @@ shell_command: !include shell_command.yaml
 homekit: !include homekit.yaml
 
 system_health:
-
 lovelace:
   mode: yaml
-
 discovery:
   enable:
     - homekit
-
-# Enables the frontend
 frontend:
-
 config:
-
 http:
   base_url: !secret ip_hass
-
 updater:
-
 history:
-
 logbook:
-
 map:
-
+sun:
+wake_on_lan:
 zone:
   - name: Negozio
     latitude: !secret latitude_negozio
@@ -55,9 +46,7 @@ zone:
     longitude: !secret longitude_smarco
     icon: mdi:worker
 
-sun:
 
-wake_on_lan:
 
 telegram_bot:
   - platform: polling
@@ -72,14 +61,16 @@ notify:
     chat_id: !secret chat_id
 
 media_player:
-  - platform: cast
+  - platform: linkplay
+    devicename: "Speaker"
+    host: !secret audiocast_ip
 
 weather:
   - platform: darksky
     api_key: !secret darksky_api
 
 apcupsd:
-  host: 192.168.3.199
+  host: !secret ups_ip
 
 
 hue:
@@ -107,9 +98,6 @@ sensor:
       - type: processor_use
       - type: last_boot
 
-  - platform: rest
-    name: audiocast
-    resource: http://192.168.3.221/httpapi.asp?command=getPlayerStatus
 
   - platform: apcupsd
     resources:
@@ -182,9 +170,6 @@ switch:
       radiodeejay:
         command_on: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:play:http://radiodeejay-lh.akamaihd.net/i/RadioDeejay_Live_1@189857/master.m3u8
         command_off: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:stop
-      mute:
-        command_on: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:mute:1
-        command_off: curl http://192.168.3.221/httpapi.asp?command=setPlayerCmd:mute:0
 
   - platform: mqtt
     name: "Serranda su"
@@ -202,41 +187,7 @@ switch:
     payload_off: "1"
     qos: 1
     retain: true
-#test per spegnere il mac da Home Assistant
 
-  - platform: wake_on_lan
-    mac_address: "1c:1b:0d:62:da:c5"
-    name: "Riavvia Hackintosh"
-    host: "192.168.3.2"
-    turn_off:
-      service: shell_command.reboot_max
-
-  - platform: wake_on_lan
-    mac_address: "1c:1b:0d:62:da:c5"
-    name: "Spegni Hackintosh"
-    host: "192.168.3.2"
-    turn_off:
-      service: shell_command.shutdown_max
-
-  - platform: command_line
-    switches:
-      test_ssh:
-        command_on: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa lamax@192.168.3.2 sudo poweroff"
-        friendly_name: Magic Test Switch
-
-  - platform: wake_on_lan
-    mac_address: "98:de:d0:1d:d3:8b"
-
-#AudioCast
-
-input_number:
-  volume_musica:
-    name: Volume
-    icon: mdi:volume-high
-    min: 1
-    max: 100
-    step: 1
-    initial: 50
 
 device_tracker:
   - platform: mikrotik

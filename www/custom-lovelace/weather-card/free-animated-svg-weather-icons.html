@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="UTF-8"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1118.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+<link rel="icon" type="image/x-icon" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/favicon.ico" />
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/apple-touch-icon-60x60.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/apple-touch-icon-152x152.png" />
+<link rel="icon" type="image/png" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/favicon-196x196.png" sizes="196x196" />
+<link rel="icon" type="image/png" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/favicon-128.png" sizes="128x128" />
+<meta name="msapplication-TileImage" content="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/mstile-144x144.png" />
+<meta name="msapplication-square70x70logo" content="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/mstile-70x70.png" />
+<meta name="msapplication-square150x150logo" content="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/mstile-150x150.png" />
+<meta name="msapplication-wide310x150logo" content="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/mstile-310x150.png" />
+<meta name="msapplication-square310x310logo" content="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/favicon/mstile-310x310.png" />
+<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+<script>
+	if ( screen.width >= 768 && screen.width <= 1136 ) {
+		var ratio = Math.round( screen.width / 13 ) / 100;
+		document.getElementById( "viewport" ).setAttribute( "content", "width=1300, initial-scale=" + ratio );
+	}
+</script>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.amcharts.com/xmlrpc.php">
+<title>Free animated SVG weather icons - amCharts</title>
+
+<link rel="canonical" href="https://www.amcharts.com/free-animated-svg-weather-icons/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Free animated SVG weather icons - amCharts" />
+<meta property="og:description" content="We&#8217;re all about beautiful vector stuff here at amCharts. That&#8217;s why we felt compelled to create our own, how-grown and nurtured icons for our weather demos and especially Weather Map tool. We also want you to use them in your projects as well. Free. No strings attached. All icons are fully scaleable, based on vector-based standard &hellip;" />
+<meta property="og:url" content="https://www.amcharts.com/free-animated-svg-weather-icons/" />
+<meta property="og:site_name" content="amCharts" />
+<meta property="article:publisher" content="https://www.facebook.com/amcharts/" />
+<meta property="og:image" content="https://www.amcharts.com/wp-content/uploads/2016/09/svg_weather_icons.png" />
+<meta property="og:image:secure_url" content="https://www.amcharts.com/wp-content/uploads/2016/09/svg_weather_icons.png" />
+<meta property="og:image:width" content="360" />
+<meta property="og:image:height" content="209" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="We&#8217;re all about beautiful vector stuff here at amCharts. That&#8217;s why we felt compelled to create our own, how-grown and nurtured icons for our weather demos and especially Weather Map tool. We also want you to use them in your projects as well. Free. No strings attached. All icons are fully scaleable, based on vector-based standard [&hellip;]" />
+<meta name="twitter:title" content="Free animated SVG weather icons - amCharts" />
+<meta name="twitter:site" content="@amcharts" />
+<meta name="twitter:image" content="https://www.amcharts.com/wp-content/uploads/2016/09/svg_weather_icons.png" />
+<meta name="twitter:creator" content="@amcharts" />
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://www.amcharts.com/","sameAs":["https://www.facebook.com/amcharts/","https://twitter.com/amcharts"],"@id":"https://www.amcharts.com/#organization","name":"amCharts","logo":""}</script>
+
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="amCharts &raquo; Feed" href="https://www.amcharts.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="amCharts &raquo; Comments Feed" href="https://www.amcharts.com/comments/feed/" />
+<link rel='stylesheet' id='wp-block-library-css' href='https://www.amcharts.com/wp-includes/css/dist/block-library/style.min.css?ver=5.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='amcharts2-style-css' href='https://www.amcharts.com/wp-content/themes/amcharts4/css/main.css?ver=20190213-01' type='text/css' media='all' />
+<link rel='https://api.w.org/' href='https://www.amcharts.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.amcharts.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.amcharts.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 5.1.1" />
+<link rel='shortlink' href='https://www.amcharts.com/?p=8600' />
+<link rel="alternate" type="application/json+oembed" href="https://www.amcharts.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.amcharts.com%2Ffree-animated-svg-weather-icons%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.amcharts.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.amcharts.com%2Ffree-animated-svg-weather-icons%2F&#038;format=xml" />
+<!--[if lt IE 9]>
+  <script type='text/javascript' src='https://www.amcharts.com/wp-content/themes/amcharts4/js/html5shiv.min.js?ver=20190213-01'></script>
+  <script type='text/javascript' src='https://www.amcharts.com/wp-content/themes/amcharts4/js/respond.min.js?ver=20190213-01'></script>
+  <![endif]-->
+
+<script>
+  // Indicates current version of the Privacy policy
+  var amcharts2_policy_version = 2018052201;
+  </script>
+</head>
+<body class="page-template-default page page-id-8600">
+<div id="page" class="site">
+<header id="masthead" class="site-header" role="banner">
+<div class="content-col">
+<div class="row">
+<div class="col-md-2">
+<a class="menu-toggle" data-controls="site-navigation" aria-controls="primary-menu" aria-expanded="false">Primary Menu</a>
+<a href="https://www.amcharts.com/" id="logo" rel="home">amCharts</a>
+</div>
+<div class="col-md-8 center">
+<div id="site-navigation" class="menu-main-menu-container trans-all"><ul id="primary-menu" class="menu"><li id="menu-item-10315" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10315"><a href="https://www.amcharts.com/javascript-charts/">The Product</a></li>
+<li id="menu-item-137" class="demo menu-item menu-item-type-demo menu-item-object-cpt_archive menu-item-137"><a href="https://www.amcharts.com/demos/">Demos</a></li>
+<li id="menu-item-10278" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10278"><a href="https://www.amcharts.com/download/">Download</a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="https://www.amcharts.com/online-store/">Buy</a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="https://www.amcharts.com/support/">Support</a></li>
+<li id="menu-item-10267" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10267"><a href="https://www.amcharts.com/docs/v4/">Docs</a></li>
+<li id="menu-item-7136" class="social md-only menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7136"><a href="#">Find us on</a>
+<ul class="sub-menu">
+<li id="menu-item-7137" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7137"><a href="https://www.facebook.com/amcharts"><i class="icon icon-facebook" title="Facebook"></i></a></li>
+<li id="menu-item-7138" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7138"><a href="https://www.twitter.com/amcharts"><i class="icon icon-twitter" title="Twitter"></i></a></li>
+<li id="menu-item-7139" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7139"><a href="https://plus.google.com/+amcharts/"><i class="icon icon-google" title="Google+"></i></a></li>
+<li id="menu-item-7140" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7140"><a href="https://www.linkedin.com/company/amcharts"><i class="icon icon-linkedin" title="LinkedIn"></i></a></li>
+</ul>
+</li>
+</ul></div> </div>
+<div class="col-md-2 right">
+<form role="search" method="get" class="search-form" action="https://www.amcharts.com/">
+<label>
+<span class="screen-reader-text">Search for:</span>
+<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+</label>
+<input type="submit" class="search-submit" value="Search" />
+</form> </div>
+</div>
+</div>
+</header>
+<div id="content" class="site-content">
+<div id="primary" class="content-area">
+<main id="main" class="site-main" role="main">
+<article id="post-8600" class="post-8600 page type-page status-publish hentry">
+<header class="entry-header hero">
+<div class="content-col">
+<h1 class="entry-title">Free animated SVG weather icons</h1>
+</div>
+</header>
+<div class="entry-content content-col">
+<div class="row">
+<div class="col-md-9">
+<p>We&#8217;re all about beautiful vector stuff here at amCharts. That&#8217;s why we felt compelled to create our own, how-grown and nurtured icons for our weather demos and especially <a href="https://weather.amcharts.com/">Weather Map tool</a>.</p>
+<p>We also want <strong>you</strong> to use them in your projects as well. Free. No strings attached.</p>
+<p>All icons are fully scaleable, based on vector-based standard SVG and animated using CSS.</p>
+<p>&nbsp;</p>
+<h4>Preview</h4>
+<h5>Cloudy</h5>
+<p><i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-1.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-1.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-2.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-2.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-3.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-3.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-night-1.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-night-1.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-night-2.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-night-2.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-night-3.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-night-3.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy.svg) no-repeat; background-size: contain;"></i></p>
+<h5>Rainy</h5>
+<p><i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-1.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-1.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-2.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-2.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-3.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-3.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-4.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-4.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-5.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-5.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-6.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-6.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-7.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-7.svg) no-repeat; background-size: contain;"></i></p>
+<h5>Snowy</h5>
+<p><i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-1.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-1.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-2.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-2.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-3.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-3.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-4.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-4.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-5.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-5.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-6.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-6.svg) no-repeat; background-size: contain;"></i></p>
+<h5>Miscellaneous</h5>
+<p><i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/day.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/day.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/night.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/night.svg) no-repeat; background-size: contain;"></i> <i class="icon bigger" style="background: url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/thunder.png) no-repeat; background: none, url(https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/thunder.svg) no-repeat; background-size: contain;"></i></p>
+<h4>Download</h4>
+<p>Grab them one-by-one here, or the whole pack.</p>
+<p><a class="button lite" href="https://www.amcharts.com/dl/svg-weather-icons/">Download icons (68KB)</a></p>
+<p>&nbsp;</p>
+<h4>License</h4>
+<p>Icons are licenses under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International Public License</a>.</p>
+<p>This basically means that you can do anything with them, (including commercial use) as long as you provide some sort of attribution to amCharts in your work.</p>
+</div>
+<div class="col-md-3 entry-sidebar">
+<h4>Also check</h4>
+<p><a href="https://www.amcharts.com/svg-maps/"><img src="https://www.amcharts.com/wp-content/uploads/2016/09/free_svg_maps-292x168.png" alt="SVG maps" width="292" height="168" /></a><br />
+<a href="https://www.amcharts.com/svg-maps/">Free SVG maps</a></p>
+<p>&nbsp;</p>
+<p><a href="https://weather.amcharts.com/"><img src="https://www.amcharts.com/wp-content/uploads/2016/09/amcharts-weather-forecast-292x153.jpg" alt="Weather Map" width="292" height="153" /></a><br />
+<a href="https://weather.amcharts.com/">amCharts Weather Map tool</a></p>
+<p>&nbsp;</p>
+<p><a href="https://www.amcharts.com/inspiration/"><img src="https://www.amcharts.com/wp-content/uploads/2016/09/index-292x153.jpg" alt="Inspiration gallery" width="292" height="153" /></a><br />
+<a href="https://www.amcharts.com/inspiration/">Inspiration gallery</a></p>
+<p>&nbsp;</p>
+<p><a href="https://www.amcharts.com/demos/"><img src="https://www.amcharts.com/wp-content/uploads/2016/04/chrome_2016-06-28_12-00-11-292x189.png" alt="amCharts Demos" width="292" height="189" /></a><br />
+<a href="https://www.amcharts.com/demos/">amCharts Demos</a></p>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+</div>
+<footer class="site-footer" role="banner">
+<div class="content-col">
+<div class="row">
+<div class="col-md-4 col-sm-12">
+<div>
+<a href="https://www.amcharts.com/" id="logo2" rel="home">amCharts</a>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div role="navigation"><h4>More info</h4><div class="menu-info-container"><ul id="menu-info" class="menu"><li id="menu-item-6844" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6844"><a href="https://www.amcharts.com/accessibility/">Accessibility Features</a></li>
+<li id="menu-item-81" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-81"><a href="https://www.amcharts.com/about/">About amCharts</a></li>
+<li id="menu-item-9430" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9430"><a href="https://www.amcharts.com/about/press-kit/">Press Kit</a></li>
+<li id="menu-item-7079" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7079"><a href="https://www.amcharts.com/blog/">amCharts Blog</a></li>
+<li id="menu-item-13326" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13326"><a href="https://www.amcharts.com/support/support-info/get-support/">Getting support</a></li>
+<li id="menu-item-10485" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10485"><a href="https://www.amcharts.com/docs/v4/">The Docs</a></li>
+<li id="menu-item-8770" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8770"><a href="https://www.amcharts.com/docs/v4/changelog/">The Docs: Changelog</a></li>
+</ul></div></div> </div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div role="navigation"><h4>Products</h4><div class="menu-products-container"><ul id="menu-products" class="menu"><li id="menu-item-12188" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12188"><a href="https://www.amcharts.com/javascript-charts/">amCharts 4</a></li>
+<li id="menu-item-8769" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8769"><a href="https://wordpress.org/plugins/amcharts-charts-and-maps/">WordPress Plugin <i class="icon icon-outside"></i></a></li>
+<li id="menu-item-12187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12187"><a href="https://www.amcharts.com/v3/">Legacy products</a></li>
+<li id="menu-item-12189" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12189"><a href="https://www.amcharts.com/versions/">Version information</a></li>
+</ul></div></div> </div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div role="navigation"><h4>Tools &#038; Resources</h4><div class="menu-tools-resources-container"><ul id="menu-tools-resources" class="menu"><li id="menu-item-8768" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8768"><a href="https://www.amcharts.com/svg-maps/">Free SVG Maps</a></li>
+<li id="menu-item-83" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-83"><a href="https://live.amcharts.com/">Online Chart Editor</a></li>
+<li id="menu-item-84" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-84"><a href="https://pixelmap.amcharts.com/">Pixel Map Generator</a></li>
+<li id="menu-item-6845" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6845"><a href="https://www.amcharts.com/visited_countries/">Visited Countries Map</a></li>
+<li id="menu-item-6846" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6846"><a href="https://www.amcharts.com/visited_states/">Visited States Map</a></li>
+</ul></div></div> </div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div role="navigation"><h4>Contact Us</h4><div class="menu-contact-container"><ul id="menu-contact" class="menu"><li id="menu-item-85" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-85"><a href="mailto:contact@amcharts.com">contact@amcharts.com</a></li>
+<li id="menu-item-86" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-86"><a href="https://www.amcharts.com/support/">Support Center</a></li>
+</ul></div></div><div role="navigation"><h4>Legal Stuff</h4><div class="menu-legal-stuff-container"><ul id="menu-legal-stuff" class="menu"><li id="menu-item-9940" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9940"><a href="https://www.amcharts.com/privacy-policy/">Privacy Policy</a></li>
+<li id="menu-item-9939" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9939"><a href="https://www.amcharts.com/terms-conditions/">Terms &#038; Conditions</a></li>
+</ul></div></div> </div>
+</div>
+<div class="row">
+<div class="col-md-8 col-md-push-4 col-sm-12 subfooter">
+<div class="row">
+<div class="col-md-6 col-sm-12 col-xs-12" role="nav">
+<div class="menu-social-container"><ul id="social-menu" class="menu"><li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="https://www.facebook.com/amcharts"><i class="icon icon-facebook"></i>Facebook</a></li>
+<li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-133"><a href="https://www.twitter.com/amcharts"><i class="icon icon-twitter"></i>Twitter</a></li>
+<li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-134"><a href="https://plus.google.com/+amcharts/"><i class="icon icon-google"></i>Google+</a></li>
+<li id="menu-item-135" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-135"><a href="https://www.linkedin.com/company/amcharts"><i class="icon icon-linkedin"></i>LinkedIn</a></li>
+</ul></div> </div>
+<div class="col-md-6 col-sm-12 col-xs-12 pull-right" id="copyright" role="contentinfo">
+Copyright © 2006-2019, amCharts. All rights reserved. </div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<div id="notices" class="trans-all">
+<div class="sticky-notice content-col row trans-all" id="notice_policy">
+<div class="col-md-9">
+ We use cookies on our website to support technical features that enhance your user experience. We also collect anonymous analytical data, as described in our <a href="https://www.amcharts.com/privacy-policy/">Privacy policy</a>.
+</div>
+<div class="col-md-3">
+<input type="button" value="I agree" class="button" />
+</div>
+</div>
+<div class="sticky-notice only-bottom content-col row trans-all" id="subscribe_news">
+<div class="col-md-9">
+<p>Would you like to stay in touch with us? Click the button below to <b>subscribe to amCharts News</b> - a newsletter sent only when we have something really cool!</p>
+</div>
+<div class="col-md-3">
+<input type="button" value="Subscribe" class="button lite agree" />
+<input type="button" value="Not interested" class="button lite not_interested" />
+</div>
+</div>
+<div class="sticky-notice only-bottom content-col row trans-all" id="subscribe_dataviz">
+<div class="col-md-9">
+<p>Fancy a monthly DataViz-related tip? Use the button below to <b>subscribe to DataViz Tips</b> newsletter.</p>
+</div>
+<div class="col-md-3">
+<input type="button" value="Subscribe" class="button lite agree" />
+<input type="button" value="Not interested" class="button lite not_interested" />
+</div>
+</div>
+</div>
+<script type='text/javascript' src='https://www.amcharts.com/wp-includes/js/jquery/jquery.js'></script>
+<script type='text/javascript' src='https://www.amcharts.com/wp-content/themes/amcharts4/js/main.js?ver=20190213-01'></script>
+<script type='text/javascript' src='https://www.amcharts.com/wp-includes/js/wp-embed.min.js?ver=5.1.1'></script>
+<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-22221037-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['amcharts.cleverbridge.com']);
+</script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"2b927c5092","applicationID":"5849300","transactionName":"NABbZxNUWRAEWhcKWA1KeFAVXFgNSkkCBFI=","queueTime":0,"applicationTime":800,"atts":"GEdYEVtOSh4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
