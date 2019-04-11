@@ -22,6 +22,11 @@ lovelace:
 discovery:
   enable:
     - homekit
+  ignore:
+    - yeelight
+    - xiaomi_gw
+    - philips_hue
+
 frontend:
 config:
 http:
@@ -46,7 +51,8 @@ zone:
     longitude: !secret longitude_smarco
     icon: mdi:worker
 
-
+tts:
+  - platform: google
 
 telegram_bot:
   - platform: polling
@@ -54,6 +60,11 @@ telegram_bot:
     allowed_chat_ids:
       - !secret chat_id
 
+panel_iframe:
+  motioneye:
+    title: motionEye
+    icon: mdi:cctv
+    url: http://192.168.3.73:8765
 
 notify:
   - name: Telegram
@@ -122,30 +133,31 @@ camera:
 
 
 #Luci
-light:
-  - platform: yeelight
-    devices:
-      192.168.3.230:
-        name: Cassa
-        model: ceiling1
-      192.168.3.231:
-        name: Postazione
-        model: ceiling1
-      192.168.3.232:
-        name: Assistenza
-        model: ceiling1
-      192.168.3.233:
-        name: Ingresso
-        model: ceiling1
-      192.168.3.234:
-        name: Fototessere
-        model: ceiling1
-      192.168.3.235:
-        name: Vetrinetta
-        model: ceiling1
-      192.168.3.236:
-        name: Bagno
 
+yeelight:
+  devices:
+    192.168.3.230:
+      name: Cassa
+      model: ceiling1
+    192.168.3.231:
+      name: Postazione
+      model: ceiling1
+    192.168.3.232:
+      name: Assistenza
+      model: ceiling1
+    192.168.3.233:
+      name: Ingresso
+      model: ceiling1
+    192.168.3.234:
+      name: Fototessere
+      model: ceiling1
+    192.168.3.235:
+      name: Vetrinetta
+      model: ceiling1
+    192.168.3.236:
+      name: Bagno
+
+light:
 #Sonoff Studio
   - platform: mqtt
     name: "Luci Studio Fotografico"
